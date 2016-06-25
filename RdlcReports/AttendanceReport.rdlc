@@ -274,7 +274,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Hours Diff</Value>
+                              <Value>Hours Diff PM</Value>
                               <Style>
                                 <Color>White</Color>
                               </Style>
@@ -620,7 +620,11 @@
             <TablixMember />
             <TablixMember />
             <TablixMember />
-            <TablixMember />
+            <TablixMember>
+              <Visibility>
+                <Hidden>=iif(CBool(Parameters!IsPM.Value) = false,true,false)</Hidden>
+              </Visibility>
+            </TablixMember>
             <TablixMember />
           </TablixMembers>
         </TablixColumnHierarchy>
@@ -639,6 +643,9 @@
         <Left>0.375in</Left>
         <Height>0.5in</Height>
         <Width>7.5925in</Width>
+        <Visibility>
+          <Hidden>=False</Hidden>
+        </Visibility>
         <Style>
           <Border>
             <Style>None</Style>
@@ -777,6 +784,36 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
+      <Textbox Name="Textbox28">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=CBool(Parameters!IsPM.Value)</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox28</rd:DefaultName>
+        <Top>0.20708in</Top>
+        <Left>3.56125in</Left>
+        <Height>0.25in</Height>
+        <Width>1in</Width>
+        <ZIndex>5</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
     <Height>2.17583in</Height>
     <Style />
@@ -881,6 +918,12 @@
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="IsPM">
+      <DataType>Boolean</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+  </ReportParameters>
   <Code>Public Function FormatTimeSpan(timeTicks As Long) As String
         Dim result As String
         result = iif(TimeSpan.FromTicks(timeTicks).Days &lt; 0 Or TimeSpan.FromTicks(timeTicks).Minutes &lt; 0 Or TimeSpan.FromTicks(timeTicks).Hours &lt; 0, "-", "") +

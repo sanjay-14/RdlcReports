@@ -84,6 +84,7 @@ namespace RdlcReports
             ReportViewer1.LocalReport.DataSources.Clear();
             ReportViewer1.LocalReport.DataSources.Add(datasource);
             ReportViewer1.LocalReport.DataSources.Add(summarySource);
+            ReportViewer1.LocalReport.SetParameters(new ReportParameter("IsPM", Boolean.TrueString));
             ReportViewer1.DataBind();
         }
     }
