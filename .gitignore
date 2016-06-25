@@ -1,2 +1,4 @@
 RdlcReports/obj/
 packages/
+*.dll
+RdlcReports/bin/
